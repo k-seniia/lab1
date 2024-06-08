@@ -10,6 +10,8 @@ terraform {
 # Configure AWS provider and creds
 provider "aws" {
 	region = "us-east-1"
+	shared_config_files = ["config"]
+	shared_credentials_files = ["credentials"]
 }
 
 # Creating bucket
