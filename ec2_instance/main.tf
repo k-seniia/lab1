@@ -1,4 +1,10 @@
 terraform {
+  backend "s3" {
+    bucket         = "hetman-terraform-backend"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraformbackendtable"
+  }
 	required_providers {
 		aws = {
 			source 	= "hashicorp/aws"
@@ -72,7 +78,6 @@ resource "aws_security_group" "web_sg" {
 		cidr_blocks = ["0.0.0.0/0"]
 	}
 }
-
 output "website_endpoint" {
 	value = aws_instance.web.public_dns
 }
